@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <menuitem id="manifestation" name="GMS" />
+
+
+        <record id="gms_ensah_manifestation_form_view" model="ir.ui.view">
+            <field name="name">gms.ensah.manifestation.form</field>
+            <field name="model">gms.ensah.manifestation</field>
+            <field name="arch" type="xml">
+                <form string="event" version="7.0">
+                    <header>
+                        <field name="state" widget="statusbar" statusbar_visible=""></field>
+                    </header>
+                    <sheet>
+                        <div class="oe_right oe_button_box" name="button_box">
+                            <button name="sponsor_preparation" string="Preparation" states="sponsor" type="workflow" class="oe_highlight" />
+                            <button name="sponsor_reportee" string="Reportee" states="sponsor" type="workflow" class="oe_highlight" />
+                            <button name="sponsor_annulee" string="Annulee" states="sponsor" type="workflow" class="oe_highlight" />
+
+                            <button name="preparation_organisation" string="Organisation" states="preparation" type="workflow" class="oe_highlight" />
+                            <button name="preparation_reportee" string="Reportee" states="preparation" type="workflow" class="oe_highlight" />
+                            <button name="preparation_annulee" string="Annulee" states="preparation" type="workflow" class="oe_highlight" />
+
+                            <button name="organisation_commencee" string="Commencee" states="organisation" type="workflow" class="oe_highlight" />
+                            <button name="organisation_reportee" string="Reportee" states="organisation" type="workflow" class="oe_highlight" />
+                            <button name="organisation_annulee" string="Annulee" states="organisation" type="workflow" class="oe_highlight" />
+
+                            <button name="commencee_terminee" string="Terminee" states="commence" type="workflow" class="oe_highlight" />
+                            <button name="commencee_reportee" string="Reportee" states="commence" type="workflow" class="oe_highlight" />
+                            <button name="commencee_annulee" string="Annulee" states="commence" type="workflow" class="oe_highlight" />
+
+                            <button name="reportee_preparation" string="Preparation" states="reporte" type="workflow" class="oe_highlight" />
+                            <button name="reportee_organisation" string="Organisation" states="reporte" type="workflow" class="oe_highlight" />
+                            <button name="reportee_commencee" string="Commencee" states="reporte" type="workflow" class="oe_highlight" />
+                            <button name="reportee_annulee" string="Annulee" states="reporte" type="workflow" class="oe_highlight" />
+                        </div>
+                        <notebook>
+                            <page string="Informations event">
+                                <group>
+                                    <field name="name" />
+                                    <field name="theme" />
+                                    <field name="date" />
+                                    <field name="duree" />
+                                    <field name="budget" />
+                                    <field name="n_participant" />
+                                </group>
+                            </page>
+                            <page string="Participants">
+                                <group>
+                                    <field name="id_participant" />
+                                </group>
+                            </page>
+                            <page string="Sponsors">
+                                <group>
+                                    <field name="id_sponsor" />
+                                </group>
+                            </page>
+                            <page string="Intervenants">
+                                <group>
+                                    <field name="id_intervenant" />
+                                </group>
+                            </page>
+                            <page string="Organisateurs">
+                                <group>
+                                    <field name="id_organisateur" />
+                                </group>
+                            </page>
+                            <page string="Responsables">
+                                <group>
+                                    <field name="id_responsable" />
+                                </group>
+                            </page>
+                            <page string="Local">
+                                <group>
+                                    <field name="id_local" />
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="gms_ensah_manifestation_tree">
+            <field name="name">gms.ensah.manifestation.tree</field>
+            <field name="model">gms.ensah.manifestation</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Infos event">
+                    <field name="name" />
+                    <field name="theme" />
+                    <field name="date" />
+                    <field name="duree" />
+                    <field name="budget" />
+                    <field name="n_participant" readonly="1"/>
+                    <field name="id_participant" />
+                    <field name="id_sponsor" />
+                    <field name="id_intervenant" />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_order_line_graph">
+            <field name="name">gms.ensah.manifestation.graph</field>
+            <field name="model">gms.ensah.manifestation</field>
+            <field name="type">graph</field>
+            <field name="arch" type="xml" >
+                  <graph string="Manifest according to its participants" type="line">
+                       <field name="name"/>
+                       <field name="n_participant" operator="*"/>
+                 </graph>
+             </field>
+         </record>
+
+        <record model="ir.actions.act_window" id="action_ensah_manifestation_seq">
+            <field name="name">action event</field>
+            <field name="res_model">gms.ensah.manifestation</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,graph</field>
+        </record>
+
+
+        <menuitem name="Manifestations" id="section_manifestation" parent="manifestation" />
+        <menuitem name="manifestation" id="real_event" parent="section_manifestation" action="action_ensah_manifestation_seq" />
+
+    </data>
+</openerp>

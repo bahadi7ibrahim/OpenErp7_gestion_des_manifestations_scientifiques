@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <menuitem id="manifestation" name="GMS" />
+
+
+        <record id="gms_ensah_organisateur_form_view" model="ir.ui.view">
+            <field name="name">gms.ensah.organisateur.form</field>
+            <field name="model">gms.ensah.organisateur</field>
+            <field name="arch" type="xml">
+                <form string="organisateur" version="7.0">
+                    <sheet>
+                        <notebook>
+                            <page string="Informations organisateur">
+                                <!-- <center>
+                                    <field name="image" widget="image" class="oe_avatar" />
+                                </center> -->
+                                <group>
+                                    <field name="name" />
+                                    <field name="phone" />
+                                    <field name="email" />
+                                    <field name="id_manifest" />
+
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="gms_ensah_organisateur_tree">
+            <field name="name">gms.ensah.organisateur.tree</field>
+            <field name="model">gms.ensah.organisateur</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Infos organisateur">
+                    <field name="name" />
+                    <field name="phone" />
+                    <field name="email" />
+                    <field name="id_manifest" />
+                </tree>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="action_ensah_organisateur_seq">
+            <field name="name">action organisateur</field>
+            <field name="res_model">gms.ensah.organisateur</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem name="Organisateurs" id="section_organisateur" parent="manifestation" />
+        <menuitem name="organisateur" id="real_organisateur" parent="section_organisateur" action="action_ensah_organisateur_seq" />
+
+    </data>
+</openerp>

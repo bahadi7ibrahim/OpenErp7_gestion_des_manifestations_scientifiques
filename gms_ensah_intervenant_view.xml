@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <menuitem id="manifestation" name="GMS" />
+
+
+        <record id="gms_ensah_intervenant_form_view" model="ir.ui.view">
+            <field name="name">gms.ensah.intervenant.form</field>
+            <field name="model">gms.ensah.intervenant</field>
+            <field name="arch" type="xml">
+                <form string="intervenant" version="7.0">
+                    <sheet>
+                        <notebook>
+                            <page string="Informations intervenant">
+                                <center>
+                                    <field name="image" widget="image" class="oe_avatar" />
+                                </center>
+                                <group>
+                                    <field name="name" />
+                                    <field name="nationalite" />
+                                    <field name="email" />
+                                    <field name="phone" />
+                                    <field name="id_manifestation" />
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="gms_ensah_intervenant_tree">
+            <field name="name">gms.ensah.intervenant.tree</field>
+            <field name="model">gms.ensah.intervenant</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Infos intervenant">
+                    <field name="name" />
+                    <field name="nationalite" />
+                    <field name="email" />
+                    <field name="phone" />
+                    <field name="id_manifestation" />
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="action_ensah_intervenant_seq">
+            <field name="name">action intervenant</field>
+            <field name="res_model">gms.ensah.intervenant</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem name="Intervenants" id="section_intervenant" parent="manifestation" />
+        <menuitem name="intervenant" id="real_intervenant" parent="section_intervenant" action="action_ensah_intervenant_seq" />
+
+    </data>
+</openerp>

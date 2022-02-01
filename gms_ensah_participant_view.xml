@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <menuitem id="manifestation" name="GMS" />
+
+
+        <record id="gms_ensah_participant_form_view" model="ir.ui.view">
+            <field name="name">gms.ensah.participant.form</field>
+            <field name="model">gms.ensah.participant</field>
+            <field name="arch" type="xml">
+                <form string="Participant" version="7.0">
+                    <sheet>
+                        <notebook>
+                            <page string="Info du Participant">
+                                <center>
+                                    <field name="image" widget="image" class="oe_avatar" />
+                                </center>
+                                <group>
+                                    <field name="name" />
+                                    <field name="CNE" />
+                                    <field name="phone" />
+                                    <field name="email" />
+                                    <field name="age" />
+                                    <field name="residence" />
+                                    <field name="date_naissance" />
+                                    <field name="address" />
+
+                                    <field name="id_manifestation" />
+                                    
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="gms_ensah_participant_tree">
+            <field name="name">gms.ensah.participant.tree</field>
+            <field name="model">gms.ensah.participant</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Infos Participant">
+                    <field name="name" />
+                    <field name="CNE" />
+                    <field name="phone" />
+                    <field name="email" />
+                    <field name="age" />
+                    <field name="residence" />
+                    <field name="date_naissance" />
+                    <field name="address" />
+                    <field name="id_manifestation" />
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="gms_ensah_participant_kanban">
+            <field name="name">gms.ensah.participant.kanban</field>
+            <field name="model">gms.ensah.participant</field>
+            <field name="priority">10</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div>
+                                <a type="open"><img t-att-src="kanban_image('gms.ensah.participant', 'image', record.id.value)" class="oe_scholar_picture"/></a>
+                                <ul style="font-size:15px">
+                                    <li><field name="name"/></li>
+                                    <li>Age: <field name="age"/></li>
+                                    <li>address: <field name="address"/></li>
+                                    <li>Manifest: <field name="id_manifestation"/></li>
+                                </ul>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="action_ensah_participant_seq">
+            <field name="name">action participant</field>
+            <field name="res_model">gms.ensah.participant</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form</field>
+        </record>
+
+
+        <menuitem name="Participants" id="section_participant" parent="manifestation" />
+        <menuitem name="participant" id="real_participant" parent="section_participant" action="action_ensah_participant_seq" />
+
+    </data>
+</openerp>
